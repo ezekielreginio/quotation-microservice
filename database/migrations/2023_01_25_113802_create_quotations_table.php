@@ -17,7 +17,8 @@ class CreateQuotationsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('recipient_address');
-            $table->string('message')->nullable();
+            $table->string('message')
+                  ->nullable();
             $table->integer('fk_payment_terms');
             $table->integer('validity');
             $table->string('validity_type');
