@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/store', 'QuotationController@store');
+Route::get('/all', 'QuotationController@index');
+Route::get('/{id}', 'QuotationController@show');
+Route::patch('/{id}', 'QuotationController@update');
+Route::delete('/{id}', 'QuotationController@destroy');
