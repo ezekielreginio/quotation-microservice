@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuotationRequest;
+use App\Services\QuotationService;
 use Illuminate\Http\Request;
 
 class QuotationController extends Controller
@@ -32,9 +34,11 @@ class QuotationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuotationRequest $request)
     {
-        //
+        $service = resolve(QuotationService::class);
+        
+        return response()->json($service->createQuotation($request->all()));
     }
 
     /**
