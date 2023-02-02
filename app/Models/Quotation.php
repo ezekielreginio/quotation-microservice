@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Quotation extends Model
 {
@@ -15,4 +16,6 @@ class Quotation extends Model
         'validity',
         'validity_type'
     ];
+
+    use SoftDeletes;
 }

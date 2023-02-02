@@ -20,4 +20,28 @@ class QuotationService
         $repository = resolve(QuotationRepository::class);
         return $repository->insertQuotation($data);
     }
+
+    public function updateQuotation(array $data, int $id)
+    {
+        $repository = resolve(QuotationRepository::class);
+        return $repository->updateQuotation($data, $id);
+    }
+
+    public function getAll()
+    {
+        $repository = resolve(QuotationRepository::class);
+        return $repository->getAll();
+    }
+
+    public function getById(int $id)
+    {
+        $repository = resolve(QuotationRepository::class);
+        return $repository->get($id);
+    }
+
+    public function deleteQuoation(int $id)
+    {
+        $repository = resolve(QuotationRepository::class);
+        return $repository->softDelete($id);
+    }
 }

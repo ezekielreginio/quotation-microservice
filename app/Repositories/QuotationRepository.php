@@ -18,4 +18,29 @@ class QuotationRepository
     {
         return Quotation::create($data);
     }
+
+    public function updateQuotation(array $data, int $id)
+    {
+ 
+        $quotation = Quotation::find($id);
+        
+        $quotation->update($data);
+
+        return $quotation;
+    }
+
+    public function getAll()
+    {
+        return Quotation::all();
+    }
+    
+    public function get(int $id)
+    {
+        return Quotation::find($id);
+    }
+
+    public function softDelete(int $id)
+    {
+        return Quotation::softDelete($id);
+    }
 }

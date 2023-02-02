@@ -16,11 +16,26 @@ class QuotationRequest extends FormRequest
     public function rules()
     {
         return [
+            'id'=> ['integer', 'exists:quotations,id'],
             'recipient_address'=> 'required',
             'message'=> 'required',
             'fk_payment_terms'=> ['required', 'integer'],
             'validity'=> ['required', 'integer'],
             'validity_type'=> 'required'
         ];
+    }
+    
+    /**
+     * Add route parameters to validation data
+     * 
+     * @param  array|mixed|null $keys
+     * 
+     * @return array
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
+     */
+    public function all($keys = null) 
+    {
+        return array_merge(parent::all(), $this->route()->parameters());
     }
 }

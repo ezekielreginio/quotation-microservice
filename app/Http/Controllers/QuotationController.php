@@ -39,6 +39,7 @@ class QuotationController extends Controller
         $service = resolve(QuotationService::class);
         
         return response()->json($service->createQuotation($request->all()));
+        
     }
 
     /**
@@ -47,9 +48,20 @@ class QuotationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $service = resolve(QuotationService::class);
+        
+        return response()->json($service->getById($id));
+    }
+
+    public function showAll()
+    {
+        $service = resolve(QuotationService::class);
+
+        return response()->json($service->getAll());
+
+        // dd(response()->json($service->getAll()));
     }
 
     /**
@@ -70,9 +82,11 @@ class QuotationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuotationRequest $request, int $id)
     {
-        //
+        $service = resolve(QuotationService::class);
+
+        return response()->json($service->updateQuotation($request->all(), $id));
     }
 
     /**
