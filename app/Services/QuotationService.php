@@ -39,9 +39,9 @@ class QuotationService
         return $repository->get($id);
     }
 
-    public function deleteQuoation(int $id)
+    public function delete(int $id)
     {
         $repository = resolve(QuotationRepository::class);
-        return $repository->softDelete($id);
+        return $repository->deleteQuotation($id);
     }
 }

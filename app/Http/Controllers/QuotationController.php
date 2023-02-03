@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class QuotationController extends Controller
 {
+    
+    private QuotationService $quotationService;
+
+    public function __construct(QuotationService $quotationService)
+    {
+        $this->quotationService = $quotationService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,10 +43,7 @@ class QuotationController extends Controller
      */
     public function store(QuotationRequest $request)
     {
-        $service = resolve(QuotationService::class);
-        
-        return response()->json($service->createQuotation($request->all()));
-        
+        return response()->json($this->quotationService->createQuotation($request->all()));
     }
 
     /**
@@ -50,16 +54,13 @@ class QuotationController extends Controller
      */
     public function show(int $id)
     {
-        $service = resolve(QuotationService::class);
         
-        return response()->json($service->getById($id));
+        return response()->json($this->quotationService->getById($id));
     }
 
     public function showAll()
     {
-        $service = resolve(QuotationService::class);
-
-        return response()->json($service->getAll());
+        return response()->json($this->quotationService->getAll());
 
         // dd(response()->json($service->getAll()));
     }
@@ -84,9 +85,7 @@ class QuotationController extends Controller
      */
     public function update(QuotationRequest $request, int $id)
     {
-        $service = resolve(QuotationService::class);
-
-        return response()->json($service->updateQuotation($request->all(), $id));
+        return response()->json($this->quotationService->updateQuotation($request->all(), $id));
     }
 
     /**
@@ -95,8 +94,8 @@ class QuotationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        return response()->json($this->quotationService->delete($id));
     }
 }

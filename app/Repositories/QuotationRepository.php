@@ -39,8 +39,8 @@ class QuotationRepository
         return Quotation::find($id);
     }
 
-    public function softDelete(int $id)
+    public function deleteQuotation(int $id)
     {
-        return Quotation::softDelete($id);
+        return Quotation::find($id)->delete();
     }
 }

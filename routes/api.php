@@ -23,4 +23,4 @@ Route::post('/store', [QuotationController::class, 'store']);
 Route::get('/all', [QuotationController::class, 'showAll']);
 Route::get('/{id}', [QuotationController::class, 'show']);
 Route::patch('/{id}', [QuotationController::class, 'update']);
-Route::delete('/{id}', 'QuotationController@destroy');
+Route::delete('/{id}', [QuotationController::class, 'destroy']);

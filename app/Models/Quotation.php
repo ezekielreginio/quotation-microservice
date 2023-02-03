@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Quotation extends Model
 {
     protected $table = 'quotations';
-
+    // use SoftDeletes;
     protected $fillable = [
         'recipient_address',
         'message',
@@ -17,5 +17,5 @@ class Quotation extends Model
         'validity_type'
     ];
 
-    use SoftDeletes;
+    
 }
