@@ -21,12 +21,7 @@ class QuotationRepository
 
     public function updateQuotation(array $data, int $id)
     {
- 
-        $quotation = Quotation::find($id);
-        
-        $quotation->update($data);
-
-        return $quotation;
+        return Quotation::find($id)->update($data);
     }
 
     public function getAll()
