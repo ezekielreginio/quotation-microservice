@@ -11,6 +11,13 @@ class QuotationController extends Controller
     
     private QuotationService $quotationService;
 
+    /**
+     * Constructor for QuotationController class
+     *
+     * @param QuotationService $quotationService
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
+     */
     public function __construct(QuotationService $quotationService)
     {
         $this->quotationService = $quotationService;
@@ -40,6 +47,8 @@ class QuotationController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
      */
     public function store(QuotationRequest $request)
     {
@@ -51,6 +60,8 @@ class QuotationController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
      */
     public function show(int $id)
     {
@@ -58,6 +69,13 @@ class QuotationController extends Controller
         return response()->json($this->quotationService->getById($id));
     }
 
+    /**
+     * Display all records from quotations table
+     *
+     * @return void
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
+     */
     public function showAll()
     {
         return response()->json($this->quotationService->getAll());
@@ -82,6 +100,8 @@ class QuotationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
      */
     public function update(QuotationRequest $request, int $id)
     {
@@ -93,6 +113,8 @@ class QuotationController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @author Redd Hilario <jhilarioiv@gmail.com>
      */
     public function destroy(int $id)
     {
