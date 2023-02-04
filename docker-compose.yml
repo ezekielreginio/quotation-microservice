@@ -1,0 +1,37 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: '3.1'
+services:
+    mysql:
+        image: 'mysql:8.0'
+        container_name: quotations-db
+        working_dir: /application
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=myapp
+            - MYSQL_DATABASE=sales_quotation
+            - MYSQL_USER=myapp
+            - MYSQL_PASSWORD=myapp
+        ports:
+            - '8183:3306'
+    webserver:
+        image: 'nginx:alpine'
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+            - ./phpdocker/local.ini:/usr/local/etc/php/conf.d/local.ini
+        ports:
+            - '8182:80'
+    php-fpm:
+        build: phpdocker/php-fpm
+        working_dir: /application
+        volumes:
+            - '.:/application'
+            - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
+#Volumes
+volumes:
+    dbdata:
+        driver: local
