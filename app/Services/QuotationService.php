@@ -6,6 +6,13 @@ use App\Repositories\QuotationRepository;
 
 class QuotationService
 {
+
+    private QuotationRepository $quotationRepository;
+
+    public function __construct(QuotationRepository $quotationRepository)
+    {
+        $this->quotationRepository = $quotationRepository;
+    }
     
     /**
      * Create a Quotation record
@@ -17,8 +24,7 @@ class QuotationService
      */
     public function createQuotation(array $data)
     {
-        $repository = resolve(QuotationRepository::class);
-        return $repository->insertQuotation($data);
+        return $this->quotationRepository->insertQuotation($data);
     }
 
     /**
@@ -32,8 +38,7 @@ class QuotationService
      */
     public function updateQuotation(array $data, int $id)
     {
-        $repository = resolve(QuotationRepository::class);
-        return $repository->updateQuotation($data, $id);
+        return $this->quotationRepository->updateQuotation($data, $id);
     }
 
     /**
@@ -45,8 +50,7 @@ class QuotationService
      */
     public function getAll()
     {
-        $repository = resolve(QuotationRepository::class);
-        return $repository->getAll();
+        return $this->quotationRepository->getAll();
     }
 
     /**
@@ -59,8 +63,7 @@ class QuotationService
      */
     public function getById(int $id)
     {
-        $repository = resolve(QuotationRepository::class);
-        return $repository->get($id);
+        return $this->quotationRepository->get($id);
     }
 
     /**
@@ -73,7 +76,6 @@ class QuotationService
      */
     public function delete(int $id)
     {
-        $repository = resolve(QuotationRepository::class);
-        return $repository->deleteQuotation($id);
+        return $this->quotationRepository->deleteQuotation($id);
     }
 }
