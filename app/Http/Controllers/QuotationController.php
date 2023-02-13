@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuotationRequest;
 use App\Services\QuotationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class QuotationController extends Controller
 {
@@ -120,4 +122,15 @@ class QuotationController extends Controller
     {
         return response()->json($this->quotationService->delete($id));
     }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    // public function me(Request $request)
+    // {
+    //     $payload = JWTAuth::parseToken()->getPayload();
+    //     return response()->json($payload);
+    // }
 }
