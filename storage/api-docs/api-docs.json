@@ -1,0 +1,140 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Quotations Microservices API Documentation",
+        "description": "<div>This Swagger UI API documentation contains the list of all the API endpoints for the Quotations Microservice.</div> <br> This Microservice is developed and published using the following tech stack: <ul><li>Laravel</li> <li>PHP</li> <li>MySQL</li> <li>Docker</li> <li>Kubernetes</li></ul> <strong>Developers:</strong> <br> <br> Ezekiel S. Reginio - <a href='https://github.com/ezekielreginio'>https://github.com/ezekielreginio</a> <br> Joven P. Hilario IV - <a href='https://github.com/reddhilario'>https://github.com/reddhilario</a>",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/quotations",
+            "description": "Quotations Microservice Server"
+        },
+        {
+            "url": "http://8777-136-158-50-54.ap.ngrok.io/quotations",
+            "description": "Quotations Microservice Production Server"
+        }
+    ],
+    "paths": {
+        "/store": {
+            "post": {
+                "tags": [
+                    "Quotations"
+                ],
+                "description": "This API Endpoint stores quotations",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Store Quotation",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Quotation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/{quotation_id}": {
+            "patch": {
+                "tags": [
+                    "Quotations"
+                ],
+                "description": "This API Endpoint updates a quotation using the specified record ID",
+                "operationId": "patch",
+                "parameters": [
+                    {
+                        "name": "quotation_id",
+                        "in": "path",
+                        "description": "Quotation ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Patch Quotation",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Quotation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Quotation": {
+                "required": [
+                    "recipient_address",
+                    "message",
+                    "fk_payment_terms",
+                    "validity",
+                    "validity_type"
+                ],
+                "properties": {
+                    "recipient_address": {
+                        "type": "string",
+                        "example": "450 V.A. Rufino St. Makati City, Philippines 1015"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "We are pleased to offer you the following items for your order."
+                    },
+                    "fk_payment_terms": {
+                        "type": "string",
+                        "example": "30"
+                    },
+                    "validity": {
+                        "type": "string",
+                        "example": "30"
+                    },
+                    "validity_type": {
+                        "type": "string",
+                        "example": "days"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Quotations",
+            "description": "API Endpoints for Quotations Microservice"
+        }
+    ]
+}
